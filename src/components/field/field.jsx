@@ -8,12 +8,11 @@ import { fieldGenerator } from './../../misc/helperFunctions.js';
 
 
 export const Field = () => {
-  //  const [userFeed, setUserFeed] = useState<any>([]);
   const [key, setKey] = useState([]);
   const [playerStart, setSetPlayerStart] = useState(true);
 
   useEffect(() => {
-    setKey( fieldGenerator(wordGenerator(wordBank), keyGenerator(playerStart)) )
+    setKey( fieldGenerator(wordGenerator(wordBank), keyGenerator()) )
   }, [])
 
   return (

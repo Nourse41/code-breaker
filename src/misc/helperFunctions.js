@@ -1,6 +1,5 @@
 export const wordGenerator = (wordBank) => {
   let wordList = new Set();
-
   while (wordList.size < 25) {
     var index = Math.floor(Math.random() * wordBank.length);
     wordList.add(wordBank[index]);
@@ -8,7 +7,9 @@ export const wordGenerator = (wordBank) => {
   return Array.from(wordList);
 };
 
-export const keyGenerator = (start) => {
+export const keyGenerator = (start = Math.random() < 0.5) => {
+  // start = start || Math.random() < 0.5;
+
   let redCardCount = 0;
   let redCardCountLimit = start ? 9 : 8;
   let blueCardCount = 0;
@@ -23,17 +24,17 @@ export const keyGenerator = (start) => {
     var value = Math.floor(Math.random() * (assassinCount < 1 ? 4 : 3));
 
     if (value === 0 && redCardCount < redCardCountLimit) {
-      redCardCount++
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
+        redCardCount++
+        key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
     } else if (value === 1 && blueCardCount < blueCardCountLimit) {
-      blueCardCount++;
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
+        blueCardCount++;
+        key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
     } else if (value === 2 && byStanderCount < 7) {
-      byStanderCount++;
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
+        byStanderCount++;
+        key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
     } else if (value === 3 && assassinCount < 1) {
-      assassinCount++;
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
+        assassinCount++;
+        key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
     }
   }
   return key;
