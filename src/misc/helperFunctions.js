@@ -10,56 +10,43 @@ export const wordGenerator = (wordBank) => {
 
 export const keyGenerator = (start) => {
   let redCardCount = 0;
-  let redCardCountLimit = 8;
+  let redCardCountLimit = start ? 9 : 8;
   let blueCardCount = 0;
-  let blueCardCountLimit = 8;
+  let blueCardCountLimit = start ? 8 : 9;
   let byStanderCount = 0;
   let assassinCount = 0;
   let key = [];
-  let remainingIndexes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
-  start ? redCardCountLimit = 9 : blueCardCountLimit = 9;
+  let remainingIndexes = [...Array(25).keys()];
 
   while (remainingIndexes.length) {
     var randomIndex = Math.floor(Math.random() * remainingIndexes.length);
-    var number = undefined;
+    var value = Math.floor(Math.random() * (assassinCount < 1 ? 4 : 3));
 
-    if (assassinCount < 1) {
-       number = Math.floor(Math.random() * 4);
-    } else {
-       number = Math.floor(Math.random() * 3);
-    }
-
-    if (number === 0 && redCardCount < redCardCountLimit) {
+    if (value === 0 && redCardCount < redCardCountLimit) {
       redCardCount++
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = number;
-      continue;
-    } else if (number === 1 && blueCardCount < blueCardCountLimit) {
+      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
+    } else if (value === 1 && blueCardCount < blueCardCountLimit) {
       blueCardCount++;
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = number;
-      continue;
-    } else if (number === 2 && byStanderCount < 7) {
+      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
+    } else if (value === 2 && byStanderCount < 7) {
       byStanderCount++;
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = number;
-      continue;
-    } else if (number === 3 && assassinCount < 1) {
+      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
+    } else if (value === 3 && assassinCount < 1) {
       assassinCount++;
-      key[remainingIndexes.splice(randomIndex, 1)[0]] = number;
-      continue;
-    } else {
-      continue;
+      key[remainingIndexes.splice(randomIndex, 1)[0]] = value;
     }
   }
   return key;
 }
 
 export const fieldGenerator = (words, numbers) => {
-  let wordsList = words.slice();
+  let wordList = Array.from(words);
   let board = [];
 
   for (var i = 0; i < 25; i++) {
     var card = {};
     card.number = numbers.splice(0, 1)[0];
-    card.word = wordsList.splice(0, 1)[0];
+    card.word = wordList.splice(0, 1)[0];
     board.push(card);
   }
   return board;
