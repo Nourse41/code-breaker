@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Card } from './../card/card.jsx';
+import { Tile } from '../tile/tile.jsx';
 import { Box, Grid } from '@mui/material';
 import { wordBank } from './../../misc/helperFunctions.js';
 import { keyGenerator } from './../../misc/helperFunctions.js';
@@ -25,9 +25,10 @@ export const Field = () => {
         >
         {key.map((value, index) => {
           return (
-            < Card
+            < Tile
               number={value.number}
               word={value.word}
+              key={index}
             />
           );
         })}
