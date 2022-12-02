@@ -6,13 +6,13 @@ export const Tile = (props) => {
   const [clickStatus, setClickStatus] = useState(false);
 
   return (
-    <Card>
-      {/* <CardHeader title={`${props.word} (${props.number})`}></CardHeader> */}
+    <Card spacing={2}>
       <CardContent style={{textAlign: 'center'}}>
         <Button
-          className='button'
+          className='wordButton'
           variant='contained'
           fullWidth
+          padding={2}
           color='secondary'
           onClick={(event) => {
             setClickStatus(true);

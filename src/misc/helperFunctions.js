@@ -44,12 +44,26 @@ export const fieldGenerator = (words, numbers) => {
   let wordList = Array.from(words);
   let board = [];
 
-  for (var i = 0; i < 25; i++) {
-    var card = {};
-    card.number = numbers.splice(0, 1)[0];
-    card.word = wordList.splice(0, 1)[0];
-    board.push(card);
+  //! create a matrix
+  for (var i = 0; i < 5; i++) {
+    var row = [];
+    for (var j = 0; j < 5; j++) {
+      var card = {};
+      card.number = numbers.splice(0, 1)[0];
+      card.word = wordList.splice(0, 1)[0];
+      row.push(card);
+    }
+    board.push(row);
   }
+
+  //! create a flat array
+  // for (var i = 0; i < 25; i++) {
+  //   var card = {};
+  //   card.number = numbers.splice(0, 1)[0];
+  //   card.word = wordList.splice(0, 1)[0];
+  //   board.push(card);
+  // }
+
   return board;
 };
 

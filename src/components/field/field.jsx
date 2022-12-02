@@ -1,29 +1,29 @@
 import React, {useState, useEffect} from 'react';
-import { Tile } from '../tile/tile.jsx';
+import { Row } from './../row/Row'
 import { Box, Grid, Container, Table } from '@mui/material';
-import { wordBank } from './../../misc/helperFunctions.js';
-import { keyGenerator } from './../../misc/helperFunctions.js';
-import { wordGenerator } from './../../misc/helperFunctions.js';
-import { fieldGenerator } from './../../misc/helperFunctions.js';
+import { wordBank } from '../../misc/helperFunctions.js';
+import { keyGenerator } from '../../misc/helperFunctions.js';
+import { wordGenerator } from '../../misc/helperFunctions.js';
+import { fieldGenerator } from '../../misc/helperFunctions.js';
 
 
 export const Field = () => {
-  const [key, setKey] = useState([]);
+  const [board, setBoard] = useState([]);
   const [playerStart, setSetPlayerStart] = useState(true);
 
   useEffect(() => {
-    setKey( fieldGenerator(wordGenerator(wordBank), keyGenerator()) )
+    setBoard( fieldGenerator(wordGenerator(wordBank), keyGenerator()) )
   }, [])
 
   return (
     <Box>
-      <Container fixed>
-          {key.map((value, index) => {
+      <Container>
+          {board.map((row, key) => {
             return (
-              < Tile
-                number={value.number}
-                word={value.word}
-                key={index}
+              < Row
+                className="row"
+                row={row}
+                key={key}
               />
             );
           })}

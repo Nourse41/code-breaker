@@ -1,11 +1,13 @@
 import './App.css';
-import { Field } from './field/field.jsx'
+import { Field } from './field/Field.jsx'
 // import axios from 'axios';
 
-function App() {
+ const App = () => {
   return (
     <>
-      < Field />
+      < Field
+        className="Field"
+      />
     </>
   );
 }
